@@ -34,18 +34,9 @@
   #import "RCTEventDispatcher.h"
 #endif
 
-#import "RNPLocation.h"
-#import "RNPBluetooth.h"
 #import "RNPNotification.h"
 #import "RNPAudioVideo.h"
-#import "RNPEvent.h"
-#import "RNPPhoto.h"
-#import "RNPContacts.h"
 #import "RNPBackgroundRefresh.h"
-#import "RNPSpeechRecognition.h"
-#import "RNPMediaLibrary.h"
-#import "RNPMotion.h"
-
 
 @interface ReactNativePermissions()
 @property (strong, nonatomic) RNPLocation *locationMgr;
@@ -113,46 +104,14 @@ RCT_REMAP_METHOD(getPermissionStatus, getPermissionStatus:(RNPType)type json:(id
 
     switch (type) {
 
-        case RNPTypeLocation: {
-            NSString *locationPermissionType = [RCTConvert NSString:json];
-            status = [RNPLocation getStatusForType:locationPermissionType];
-            break;
-        }
-        case RNPTypeCamera:
-            status = [RNPAudioVideo getStatus:@"video"];
-            break;
         case RNPTypeMicrophone:
             status = [RNPAudioVideo getStatus:@"audio"];
-            break;
-        case RNPTypePhoto:
-            status = [RNPPhoto getStatus];
-            break;
-        case RNPTypeContacts:
-            status = [RNPContacts getStatus];
-            break;
-        case RNPTypeEvent:
-            status = [RNPEvent getStatus:@"event"];
-            break;
-        case RNPTypeReminder:
-            status = [RNPEvent getStatus:@"reminder"];
-            break;
-        case RNPTypeBluetooth:
-            status = [RNPBluetooth getStatus];
             break;
         case RNPTypeNotification:
             status = [RNPNotification getStatus];
             break;
         case RNPTypeBackgroundRefresh:
             status = [RNPBackgroundRefresh getStatus];
-            break;
-        case RNPTypeSpeechRecognition:
-            status = [RNPSpeechRecognition getStatus];
-            break;
-        case RNPTypeMediaLibrary:
-            status = [RNPMediaLibrary getStatus];
-            break;
-        case RNPTypeMotion:
-            status = [RNPMotion getStatus];
             break;
         default:
             break;
